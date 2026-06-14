@@ -177,6 +177,7 @@ margin-top:10px;
 <h2>💰 Venda + Comissão</h2>
 
 <select id="tipoVenda">
+<option value="5250">Venda Parceria Forte - R$ 5.250</option>
 <option value="5600">Venda com Parceria - R$ 5.600</option>
 <option value="7000">Venda sem Parceria - R$ 7.000</option>
 </select>
@@ -199,6 +200,7 @@ margin-top:10px;
 <tr>
 <th>Data</th>
 <th>Tipo</th>
+<th>Valor Unit.</th>
 <th>Qtd</th>
 <th>Venda</th>
 <th>Comissão</th>
@@ -266,10 +268,11 @@ document.getElementById("resultadoVenda").innerHTML=`
 
 vendas.push({
 data:new Date().toLocaleDateString('pt-BR'),
-tipo: valor===5600 ? "Com Parceria" : "Sem Parceria",
+tipo: valor===5250 ? "Parceria Forte" : (valor===5600 ? "Com Parceria" : "Sem Parceria"),
 qtd:qtd,
 venda:total,
 comissao:comissao,
+valorUnitario: valor,
 empresa:firma
 });
 
@@ -296,6 +299,7 @@ tabela.innerHTML+=`
 <tr>
 <td>${v.data}</td>
 <td>${v.tipo}</td>
+<td>R$ ${(v.valorUnitario||0).toLocaleString('pt-BR')}</td>
 <td>${v.qtd}</td>
 <td>R$ ${v.venda.toLocaleString('pt-BR')}</td>
 <td>R$ ${v.comissao.toLocaleString('pt-BR')}</td>
